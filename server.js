@@ -7,6 +7,8 @@ const { errorHandler } = require('./middlewares/errorHandler');
 const { corsOptions } = require('./middlewares/cors');
 const { limiter } = require('./middlewares/rateLimiter');
 require('dotenv').config();
+const cors = require('cors');
+app.use(cors({ origin: "https://hopin-frontend.vercel.app/" }));
 const app=express()
 app.use(express.urlencoded({limit:"40kb",extended: true}))
 app.use(express.json());
@@ -16,6 +18,7 @@ app.use(errorHandler);
 app.listen(3000,()=>{
     console.log("server is running on port 3000")
 })
+
 app.get("/",(req,res)=>{
     res.send("Hello")
 })
